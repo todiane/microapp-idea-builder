@@ -3,9 +3,6 @@
 # Micro-App Idea Builder
 
 **Turn a problem into an interactive tool.**
-# Micro-App Idea Builder
-
-**Turn a problem into an interactive tool.**
 
 The Micro-App Idea Builder is a free interactive tool that helps you explore ideas for small web applications. Choose an audience, identify a problem and decide what outcome would be useful. The tool generates a micro-app concept, suggested features and practical next steps.
 
