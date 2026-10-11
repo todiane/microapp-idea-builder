@@ -1,3 +1,8 @@
+![Micro-App Idea Builder](micro-app-idea-builder-dashboard.png)
+
+# Micro-App Idea Builder
+
+**Turn a problem into an interactive tool.**
 # Micro-App Idea Builder
 
 **Turn a problem into an interactive tool.**
