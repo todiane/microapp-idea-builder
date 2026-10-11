@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Micro-App Idea Builder | Turn Ideas into Interactive Tools</title>
+  <meta name="description" content="Find a practical idea for a small interactive web app. Choose an audience, a problem and an outcome to generate a micro-app concept, suggested features and next steps.">
+  <meta name="author" content="todianedev">
+  <meta name="keywords" content="micro-app ideas, interactive tools, web app ideas, micro-app builder, no-code ideas, AI-built apps, small web applications">
+  <meta property="og:title" content="Micro-App Idea Builder">
+  <meta property="og:description" content="Turn a problem, task or idea into a practical concept for a small interactive web application.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#f7f6fc">
+  <style>
+    :root {
+      --ink: #24243a;
+      --muted: #66677d;
+      --paper: #fbfaff;
+      --panel: #ffffff;
+      --line: #e6e3f2;
+      --brand: #6b6fd6;
+      --brand-dark: #4d51b5;
+      --brand-pale: #eeedff;
+      --mint: #dff5ed;
+      --coral: #ffcfbd;
+      --shadow: 0 18px 50px rgba(48, 43, 94, .09);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 90% 0%, rgba(214, 213, 255, .42), transparent 35rem),
+        radial-gradient(ellipse at 0% 35%, rgba(223, 245, 237, .55), transparent 28rem),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--brand-dark); text-underline-offset: 3px; }
+    a:hover { color: var(--ink); }
+    button, select { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 36px)); margin-inline: auto; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:22px 0; }
+    .brandmark { display:flex; align-items:center; gap:11px; color:var(--ink); text-decoration:none; font-weight:850; letter-spacing:-.04em; }
+    .mark { display:grid; place-items:center; width:42px; height:42px; border-radius:14px; color:white; background:var(--brand); box-shadow:0 8px 20px rgba(107,111,214,.25); font-size:19px; }
+    .brandmark span:last-child { font-size:1.02rem; }
+    .navlinks { display:flex; flex-wrap:wrap; gap:20px; align-items:center; font-size:.92rem; }
+    .navlinks a { color:var(--muted); text-decoration:none; font-weight:650; }
+    .navlinks a:hover { color:var(--brand-dark); }
+    .hero { padding:58px 0 48px; display:grid; grid-template-columns:1.15fr .85fr; align-items:center; gap:48px; }
+    .eyebrow { display:inline-flex; gap:8px; align-items:center; border:1px solid #dcdafa; border-radius:999px; padding:7px 12px; color:var(--brand-dark); background:rgba(255,255,255,.76); font-size:.78rem; font-weight:800; letter-spacing:.07em; text-transform:uppercase; }
+    h1 { margin:20px 0 18px; font-size:clamp(2.6rem, 6vw, 4.8rem); line-height:1.02; letter-spacing:-.065em; max-width:720px; }
+    .gradient { color:var(--brand); }
+    .hero p { max-width:620px; font-size:1.13rem; color:var(--muted); margin:0 0 25px; }
+    .button { display:inline-flex; justify-content:center; align-items:center; gap:9px; border:0; border-radius:13px; padding:13px 18px; background:var(--brand); color:#fff; font-weight:800; text-decoration:none; cursor:pointer; box-shadow:0 8px 18px rgba(107,111,214,.2); transition:transform .15s ease, background .15s ease; }
+    .button:hover { color:#fff; background:var(--brand-dark); transform:translateY(-1px); }
+    .button.secondary { color:var(--ink); background:white; border:1px solid var(--line); box-shadow:none; }
+    .button.secondary:hover { background:var(--brand-pale); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .visual { position:relative; min-height:360px; display:grid; place-items:center; }
+    .orbit { position:absolute; width:320px; height:320px; border:1px dashed #c9c7f0; border-radius:50%; }
+    .orbit:before,.orbit:after { content:""; position:absolute; border:1px solid #e0def8; border-radius:50%; inset:28px; }
+    .orbit:after { inset:60px; }
+    .mock-card { position:relative; width:min(340px, 90%); background:rgba(255,255,255,.95); border:1px solid var(--line); border-radius:24px; padding:22px; box-shadow:var(--shadow); transform:rotate(-2deg); }
+    .mock-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:19px; }
+    .dots { display:flex; gap:5px; } .dots i { width:7px; height:7px; border-radius:50%; background:#d8d5f3; }
+    .mock-label { color:var(--muted); font-size:.76rem; font-weight:750; }
+    .mock-card h3 { font-size:1.42rem; letter-spacing:-.04em; line-height:1.15; margin:0 0 14px; }
+    .mock-option { display:flex; align-items:center; gap:10px; padding:10px 11px; border:1px solid var(--line); border-radius:11px; margin-top:8px; font-size:.85rem; color:#45465e; }
+    .mock-option b { display:grid; place-items:center; width:25px; height:25px; border-radius:8px; background:var(--brand-pale); color:var(--brand-dark); }
+    .floating { position:absolute; border-radius:16px; padding:12px 15px; font-size:.84rem; font-weight:800; box-shadow:var(--shadow); }
+    .float-one { top:35px; right:0; background:var(--mint); transform:rotate(5deg); }
+    .float-two { bottom:30px; left:0; background:var(--coral); transform:rotate(-5deg); }
+    section { scroll-margin-top:25px; }
+    .section-head { max-width:720px; margin:0 auto 28px; text-align:center; }
+    .section-head h2 { margin:0 0 10px; font-size:clamp(1.8rem, 4vw, 2.65rem); line-height:1.12; letter-spacing:-.05em; }
+    .section-head p { margin:0; color:var(--muted); }
+    .finder-section { padding:54px 0 72px; }
+    .finder-layout { display:grid; grid-template-columns:.9fr 1.1fr; gap:22px; align-items:start; }
+    .panel { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); }
+    .form-panel { padding:clamp(22px, 4vw, 34px); }
+    .step-label { color:var(--brand-dark); font-size:.78rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
+    .form-panel h3 { margin:7px 0 8px; font-size:1.55rem; letter-spacing:-.04em; }
+    .form-intro { color:var(--muted); margin:0 0 23px; font-size:.95rem; }
+    .field { margin:20px 0; }
+    .field label { display:block; font-weight:800; margin-bottom:8px; font-size:.94rem; }
+    .field select { width:100%; padding:13px 14px; color:var(--ink); background:#fff; border:1px solid #dcd9ed; border-radius:12px; outline:none; }
+    .field select:focus { border-color:var(--brand); box-shadow:0 0 0 3px rgba(107,111,214,.13); }
+    .form-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+    .result-panel { padding:clamp(22px, 4vw, 34px); min-height:100%; background:linear-gradient(160deg,#fff 0%,#fbfaff 100%); }
+    .result-empty { min-height:420px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }
+    .result-icon { display:grid; place-items:center; width:56px; height:56px; border-radius:17px; background:var(--brand-pale); font-size:1.5rem; margin-bottom:18px; }
+    .result-empty h3 { margin:0 0 10px; font-size:1.6rem; letter-spacing:-.04em; }
+    .result-empty p { max-width:440px; color:var(--muted); margin:0; }
+    .result-content[hidden], .result-empty[hidden] { display:none; }
+    .result-content h3 { font-size:1.85rem; line-height:1.13; letter-spacing:-.045em; margin:8px 0 12px; }
+    .result-content p { color:var(--muted); }
+    .result-tag { display:inline-block; background:var(--mint); color:#235b4a; border-radius:999px; padding:5px 10px; font-size:.75rem; font-weight:850; }
+    .result-block { margin-top:22px; padding-top:18px; border-top:1px solid var(--line); }
+    .result-block h4 { margin:0 0 9px; font-size:.96rem; }
+    .result-block ul,.result-block ol { padding-left:20px; margin:0; color:#515269; }
+    .result-block li { margin:6px 0; }
+    .result-note { margin-top:18px; padding:13px 14px; border-radius:12px; background:#f0efff; color:#4b4e91; font-size:.88rem; }
+    .copy-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+    .how-section { padding:65px 0; background:#f0effa; border-top:1px solid #e6e3f5; border-bottom:1px solid #e6e3f5; }
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:30px; }
+    .step-card { background:#fff; border:1px solid var(--line); border-radius:18px; padding:23px; }
+    .step-number { display:grid; place-items:center; width:36px; height:36px; border-radius:12px; color:white; background:var(--brand); font-weight:900; margin-bottom:16px; }
+    .step-card h3 { margin:0 0 7px; font-size:1.1rem; letter-spacing:-.025em; }
+    .step-card p { margin:0; color:var(--muted); font-size:.94rem; }
+    .projects-section { padding:70px 0; }
+    .project-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .project-card { display:flex; flex-direction:column; align-items:flex-start; padding:25px; background:#fff; border:1px solid var(--line); border-radius:18px; transition:transform .15s ease, box-shadow .15s ease; }
+    .project-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
+    .project-symbol { display:grid; place-items:center; width:44px; height:44px; border-radius:14px; background:var(--brand-pale); color:var(--brand-dark); font-size:1.15rem; font-weight:900; margin-bottom:15px; }
+    .project-card h3 { margin:0 0 7px; font-size:1.14rem; }
+    .project-card p { margin:0 0 16px; color:var(--muted); font-size:.93rem; flex:1; }
+    .project-card a { font-weight:800; text-decoration:none; }
+    .about-strip { padding:30px; border-radius:var(--radius); background:#25263c; color:#fff; display:flex; justify-content:space-between; align-items:center; gap:24px; }
+    .about-strip h2 { margin:0 0 6px; font-size:1.65rem; letter-spacing:-.045em; }
+    .about-strip p { color:#d0d0e2; margin:0; max-width:650px; }
+    .about-strip .button { flex-shrink:0; background:#fff; color:#393c91; box-shadow:none; }
+    .guide-section { padding:0 0 70px; }
+    .guide-card { padding:25px 28px; display:flex; justify-content:space-between; align-items:center; gap:24px; background:#fff; border:1px solid var(--line); border-radius:18px; }
+    .guide-card h3 { margin:0 0 5px; } .guide-card p { margin:0; color:var(--muted); }
+    footer { padding:25px 0 34px; border-top:1px solid var(--line); color:var(--muted); font-size:.88rem; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap; }
+    footer a { font-weight:750; }
+    .smallprint { margin-top:10px; font-size:.78rem; color:#85859a; }
+    @media (max-width:800px) {
+      .hero { grid-template-columns:1fr; gap:10px; padding-top:35px; }
+      .visual { min-height:320px; }
+      .finder-layout { grid-template-columns:1fr; }
+      .result-empty { min-height:270px; }
+      .steps { grid-template-columns:1fr; }
+      .about-strip,.guide-card { align-items:flex-start; flex-direction:column; }
+    }
+    @media (max-width:520px) {
+      .wrap { width:min(100% - 24px, 1120px); }
+      .topbar { align-items:flex-start; flex-direction:column; }
+      .navlinks { gap:13px; font-size:.85rem; }
+      .hero { padding-top:26px; }
+      h1 { font-size:2.75rem; }
+      .visual { min-height:300px; }
+      .orbit { width:270px; height:270px; }
+      .float-one { right:-3px; top:17px; }
+      .float-two { left:-2px; bottom:15px; }
+      .project-grid { grid-template-columns:1fr; }
+      .form-actions .button,.copy-row .button { width:100%; }
+      .about-strip { padding:24px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none !important; } }
+  </style>
+</head>
+<body>
+  <header class="wrap topbar">
+    <a class="brandmark" href="#top" aria-label="Micro-App Idea Builder home">
+      <span class="mark" aria-hidden="true">✳</span><span>Micro-App Idea Builder</span>
+    </a>
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="#idea-finder">Idea Finder</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#projects">Selected projects</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div>
+        <span class="eyebrow"><span aria-hidden="true">✦</span> A practical idea starts here</span>
+        <h1 id="hero-title">Turn a problem into an <span class="gradient">interactive tool.</span></h1>
+        <p>Have an idea for a micro-app but are not sure what to build? Choose the people you want to help, the problem they face and the result they need. Get a practical concept you can develop further.</p>
+        <div class="hero-actions">
+          <a class="button" href="#idea-finder">Find my micro-app idea <span aria-hidden="true">→</span></a>
+          <a class="button secondary" href="#projects">Explore selected projects</a>
+        </div>
+      </div>
+      <div class="visual" aria-label="Illustration of an app idea taking shape">
+        <div class="orbit" aria-hidden="true"></div>
+        <div class="floating float-one">A useful idea, made clearer</div>
+        <div class="floating float-two">Problem → possibility</div>
+        <div class="mock-card">
+          <div class="mock-top"><span class="mock-label">YOUR NEXT SMALL APP</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <h3>What could you make easier?</h3>
+          <div class="mock-option"><b>1</b> Help someone decide</div>
+          <div class="mock-option"><b>2</b> Make a calculation</div>
+          <div class="mock-option"><b>3</b> Turn steps into a plan</div>
+          <div class="mock-option"><b>4</b> Give tailored feedback</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="finder-section" id="idea-finder" aria-labelledby="finder-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="finder-title">Find your micro-app idea</h2>
+          <p>Answer three quick questions. Your idea is generated in your browser, and nothing is sent to a server.</p>
+        </div>
+        <div class="finder-layout">
+          <form class="panel form-panel" id="idea-form">
+            <div class="step-label">The idea finder · 3 choices</div>
+            <h3>Start with the problem</h3>
+            <p class="form-intro">You do not need a technical idea yet. Start with a person and something they need to do.</p>
+            <div class="field">
+              <label for="audience">Who would you like to help?</label>
+              <select id="audience" name="audience">
+                <option value="clients">Clients or customers</option>
+                <option value="professionals">Independent professionals or small businesses</option>
+                <option value="learners">Learners or people building a skill</option>
+                <option value="creators">Creators with content, guides or workbooks</option>
+                <option value="community">A community or group of people</option>
+                <option value="myself">Myself, to make a task easier</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="problem">What do they need help with?</label>
+              <select id="problem" name="problem">
+                <option value="decide">Making a decision or choosing an option</option>
+                <option value="calculate">Working something out or comparing numbers</option>
+                <option value="plan">Planning a task or following a process</option>
+                <option value="assess">Assessing a situation or understanding a result</option>
+                <option value="learn">Learning something in manageable steps</option>
+                <option value="create">Creating a useful first draft or output</option>
+                <option value="find">Finding the right information or resource</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="outcome">What would a helpful result look like?</label>
+              <select id="outcome" name="outcome">
+                <option value="recommendation">A tailored recommendation</option>
+                <option value="number">A clear number, estimate or comparison</option>
+                <option value="plan">A step-by-step plan or checklist</option>
+                <option value="report">A summary, score or personalised report</option>
+                <option value="resource">A generated template, prompt or resource</option>
+                <option value="progress">A way to track progress or completion</option>
+              </select>
+            </div>
+            <div class="form-actions">
+              <button class="button" type="submit">Build my idea <span aria-hidden="true">→</span></button>
+              <button class="button secondary" type="reset">Start again</button>
+            </div>
+          </form>
+
+          <div class="panel result-panel" aria-live="polite" aria-atomic="true">
+            <div class="result-empty" id="result-empty">
+              <div class="result-icon" aria-hidden="true">✧</div>
+              <h3>Your idea will take shape here.</h3>
+              <p>Choose your answers and select <strong>Build my idea</strong>. You will get a concept, a feature shortlist and practical next steps, not just a name for an app.</p>
+            </div>
+            <div class="result-content" id="result-content" hidden>
+              <span class="result-tag" id="result-type">YOUR MICRO-APP CONCEPT</span>
+              <h3 id="result-title">Your app idea</h3>
+              <p id="result-description"></p>
+              <div class="result-block"><h4>How it could work</h4><p id="result-flow"></p></div>
+              <div class="result-block"><h4>Features to start with</h4><ul id="result-features"></ul></div>
+              <div class="result-block"><h4>A sensible first version</h4><ol id="result-steps"></ol></div>
+              <div class="result-note" id="result-note"></div>
+              <div class="copy-row">
+                <button class="button" id="copy-idea" type="button">Copy my idea</button>
+                <button class="button secondary" id="change-idea" type="button">Try another combination</button>
+              </div>
+              <p class="smallprint" id="copy-status" role="status"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-section" id="how-it-works">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>A small app can solve a real problem</h2>
+          <p>You do not have to begin with a big software idea. Begin with one useful job and make that job easier.</p>
+        </div>
+        <div class="steps">
+          <article class="step-card"><div class="step-number">1</div><h3>Choose one problem</h3><p>Look for a decision, calculation, repeated task or confusing process that people would value help with.</p></article>
+          <article class="step-card"><div class="step-number">2</div><h3>Make the result useful</h3><p>Decide what someone should leave with: an answer, a plan, a comparison, a score or a ready-to-use resource.</p></article>
+          <article class="step-card"><div class="step-number">3</div><h3>Build the smallest version</h3><p>Start with the essential questions, logic and result. Test it with real people before adding more features.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects-section" id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>More from the builder</h2>
+          <p>A few places to explore my work, products and development projects.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-symbol" aria-hidden="true">D</div>
+            <h3>Djangify</h3>
+            <p>An eCommerce builder for people who want to sell digital products through their own online shop.</p>
+            <a href="https://www.djangify.com/" target="_blank" rel="noopener noreferrer">Explore Djangify ↗</a>
+          </article>
+          <article class="project-card">
+            <div class="project-symbol" aria-hidden="true">✳</div>
+            <h3>Free and premium apps</h3>
+            <p>Explore practical digital tools and applications, including free and paid projects.</p>
+            <a href="https://www.dianecorriette.com/shop/" target="_blank" rel="noopener noreferrer">Browse the apps shop ↗</a>
+          </article>
+          <article class="project-card">
+            <div class="project-symbol" aria-hidden="true">in</div>
+            <h3>Meet the developer</h3>
+            <p>Connect with todianedev and follow my work in software, web applications and AI-assisted development.</p>
+            <a href="https://linkedin.com/in/todianedev" target="_blank" rel="noopener noreferrer">Find me on LinkedIn ↗</a>
+          </article>
+          <article class="project-card">
+            <div class="project-symbol" aria-hidden="true">↗</div>
+            <h3>Portfolio</h3>
+            <p>See more projects and examples of the things I build.</p>
+            <a href="https://www.dianecorriette.com/portfolio/" target="_blank" rel="noopener noreferrer">View the portfolio ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap guide-section">
+      <div class="about-strip">
+        <div><h2>Have an idea? Take the next step.</h2><p>Use your concept as a starting brief. Decide what the first version must do, then build and test one useful feature at a time.</p></div>
+        <a class="button" href="https://www.dianecorriette.com/docs/how-to-publish-an-ai-built-micro-app-for-free/" target="_blank" rel="noopener noreferrer">Read the free publishing guide ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>Micro-App Idea Builder · Built by <a href="https://linkedin.com/in/todianedev" target="_blank" rel="noopener noreferrer">todianedev</a></span>
+      <span><a href="https://www.dianecorriette.com/portfolio/" target="_blank" rel="noopener noreferrer">Meet the developer</a></span>
+    </div>
+    <div class="wrap smallprint">This tool creates idea suggestions in your browser. It does not send your selections to a server or guarantee that an idea is commercially viable.</div>
+  </footer>
+
+  <script>
+    (function () {
+      const audienceText = {
+        clients: "clients or customers",
+        professionals: "independent professionals or small businesses",
+        learners: "learners or people building a skill",
+        creators: "creators with existing content, guides or workbooks",
+        community: "a community or group of people",
+        myself: "someone who wants to make a task easier"
+      };
+      const problemData = {
+        decide: {
+          noun: "Decision Guide",
+          action: "compare a small set of options and work out which one best fits their priorities",
+          flow: "The visitor chooses what matters most, answers a few focused questions and receives a recommendation with a short explanation.",
+          features: ["A short, easy-to-follow question flow", "A simple scoring or rules system", "A recommendation with the reasons behind it"],
+          first: ["Write down the three to five factors that matter most.", "Create a small set of questions that reveal those factors.", "Show a result with a clear explanation and a next step."]
+        },
+        calculate: {
+          noun: "Smart Calculator",
+          action: "calculate a figure or compare different scenarios",
+          flow: "The visitor enters a few values, adjusts assumptions and sees the result update with a plain-language explanation.",
+          features: ["Clearly labelled input fields", "Instant calculations and scenario comparison", "A result summary that can be copied"],
+          first: ["Define the calculation and check the formula.", "Build the input fields and validate the values.", "Display the result with the assumptions made explicit."]
+        },
+        plan: {
+          noun: "Step-by-Step Planner",
+          action: "turn a task into an ordered plan they can follow",
+          flow: "The visitor describes or selects a goal, then receives a sequence of steps with checkboxes and a clear starting point.",
+          features: ["A short goal or situation selector", "A tailored checklist in a sensible order", "Progress checkboxes and a reset option"],
+          first: ["Choose one common task to support.", "Write a useful checklist for that task.", "Add completion states and a clear finish point."]
+        },
+        assess: {
+          noun: "Self-Assessment Tool",
+          action: "review a situation and understand what their answers suggest",
+          flow: "The visitor responds to a short set of prompts and receives a summary category, score or reflection with practical suggestions.",
+          features: ["A focused set of assessment questions", "Transparent scoring or result categories", "A personalised summary with suggested actions"],
+          first: ["Choose what the assessment can reasonably measure.", "Write clear questions and define each result category.", "Test the scoring against example answers and avoid overstating what the result means."]
+        },
+        learn: {
+          noun: "Learning Companion",
+          action: "learn a skill through small, manageable steps",
+          flow: "The visitor selects their current level and goal, then works through bite-sized steps with examples and a progress indicator.",
+          features: ["A level or goal selector", "Short lessons or examples", "A progress checklist and review prompt"],
+          first: ["Choose one specific skill or topic.", "Break it into three to seven small steps.", "Add a simple way to mark progress and revisit examples."]
+        },
+        create: {
+          noun: "Resource Generator",
+          action: "create a useful first draft from a few guided inputs",
+          flow: "The visitor fills in a structured form and the tool combines their answers into a reusable template, outline or prompt.",
+          features: ["Guided fields with helpful examples", "A formatted output assembled from the answers", "A copy button so the result can be used elsewhere"],
+          first: ["Pick one output, such as a checklist, brief or template.", "Define the minimum information needed to produce it.", "Generate the output in the browser and let visitors copy it."]
+        },
+        find: {
+          noun: "Resource Navigator",
+          action: "identify the most relevant resource for their situation",
+          flow: "The visitor selects their need and circumstances, then receives a short list of relevant resources with an explanation of why each may help.",
+          features: ["A small set of need-based questions", "A curated resource list mapped to answers", "Clear descriptions and links to the next step"],
+          first: ["Gather a small, trustworthy set of resources.", "Tag each resource by the problem it addresses.", "Match the visitor's answers to the most relevant options."]
+        }
+      };
+      const outcomeText = {
+        recommendation: "a tailored recommendation",
+        number: "a clear number, estimate or comparison",
+        plan: "a step-by-step plan or checklist",
+        report: "a summary, score or personalised report",
+        resource: "a generated template, prompt or resource",
+        progress: "a way to track progress or completion"
+      };
+      const form = document.getElementById("idea-form");
+      const empty = document.getElementById("result-empty");
+      const result = document.getElementById("result-content");
+      let latestText = "";
+
+      function addItems(id, items) {
+        const list = document.getElementById(id);
+        list.replaceChildren();
+        items.forEach(function (item) {
+          const li = document.createElement("li");
+          li.textContent = item;
+          list.appendChild(li);
+        });
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const audience = document.getElementById("audience").value;
+        const problem = document.getElementById("problem").value;
+        const outcome = document.getElementById("outcome").value;
+        const data = problemData[problem];
+        const title = "A " + data.noun;
+        const description = "Create a small web app for " + audienceText[audience] + " that helps them " + data.action + ". Its main promise is to give them " + outcomeText[outcome] + " without making them work through a complicated process.";
+        document.getElementById("result-title").textContent = title;
+        document.getElementById("result-description").textContent = description;
+        document.getElementById("result-flow").textContent = data.flow;
+        addItems("result-features", data.features);
+        addItems("result-steps", data.first);
+        document.getElementById("result-note").textContent = "Keep the first version focused. You can begin with HTML, CSS and JavaScript, then add a backend only if the app genuinely needs accounts, saved data or shared information.";
+        latestText = title + "\n\nAudience: " + audienceText[audience] + "\n\nConcept: " + description + "\n\nHow it could work: " + data.flow + "\n\nFeatures to start with:\n- " + data.features.join("\n- ") + "\n\nFirst steps:\n1. " + data.first.join("\n2 ");
+        empty.hidden = true;
+        result.hidden = false;
+        document.getElementById("copy-status").textContent = "";
+      });
+
+      form.addEventListener("reset", function () {
+        window.setTimeout(function () {
+          result.hidden = true;
+          empty.hidden = false;
+          latestText = "";
+          document.getElementById("copy-status").textContent = "";
+        }, 0);
+      });
+
+      document.getElementById("change-idea").addEventListener("click", function () {
+        document.getElementById("problem").focus();
+        document.getElementById("idea-finder").scrollIntoView({ behavior: "smooth" });
+      });
+
+      document.getElementById("copy-idea").addEventListener("click", async function () {
+        const status = document.getElementById("copy-status");
+        if (!latestText) return;
+        try {
+          await navigator.clipboard.writeText(latestText);
+          status.textContent = "Your idea has been copied. Paste it into your notes or development brief.";
+        } catch (error) {
+          const textArea = document.createElement("textarea");
+          textArea.value = latestText;
+          textArea.setAttribute("readonly", "");
+          textArea.style.position = "absolute";
+          textArea.style.left = "-9999px";
+          document.body.appendChild(textArea);
+          textArea.select();
+          const copied = document.execCommand("copy");
+          textArea.remove();
+          status.textContent = copied ? "Your idea has been copied. Paste it into your notes or development brief." : "Copy was not available in this browser. Select and copy the result text manually.";
+        }
+      });
+    }());
+  </script>
+</body>
+</html>
