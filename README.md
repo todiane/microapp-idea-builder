@@ -1,5 +1,3 @@
-# microapp-idea-builder
-Micro-App Idea Builder GitHub Page
 # Micro-App Idea Builder
 
 **Turn a problem into an interactive tool.**
@@ -71,7 +69,7 @@ The project is part of an exploration of accessible ways to build and publish sm
 
 ## More from the developer
 
-I'm **todianedev**, exploring software development, interactive tools and AI-assisted application building.
+I'm **Diane @todianedev**, exploring software development, interactive tools and AI-assisted application building.
 
 - [Djangify](https://www.djangify.com/) – eCommerce builder.
 - [Free and premium apps](https://www.dianecorriette.com/shop/) – Explore digital tools and applications.
